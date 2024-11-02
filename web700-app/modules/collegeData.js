@@ -103,6 +103,23 @@ function getStudentByNum(num) {
     });
 }
 
+function addStudent(studentData) {
+    return new Promise((resolve, reject) => {
+        // Set TA property to false if undefined, otherwise true
+        studentData.TA = studentData.TA ? true : false;
+
+        // Set studentNum to be the next available number
+        studentData.studentNum = dataCollection.students.length + 1;
+
+        // Add the studentData to the students array
+        dataCollection.students.push(studentData);
+
+        // Resolve the promise
+        resolve();
+    });
+}
+
+
 
 // Export the functions
-module.exports = { initialize, getAllStudents, getTAs, getCourses, getStudentsByCourse, getStudentByNum };
+module.exports = { initialize, getAllStudents, getTAs, getCourses, getStudentsByCourse, getStudentByNum, addStudent };
